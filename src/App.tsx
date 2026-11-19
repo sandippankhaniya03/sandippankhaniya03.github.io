@@ -24,9 +24,9 @@ function Header() {
   const [indicator, setIndicator] = useState({ left: 0, width: 0 })
   const highlightedLink = hoveredLink ?? focusedLink ?? activeLink
   const navLinks = [
+    { id: 'top', label: 'Home' },
     { id: 'about', label: 'About' },
     { id: 'toolkit', label: 'Toolkit' },
-    { id: 'direction', label: 'Direction' },
     { id: 'contact', label: 'Contact' },
   ]
 
@@ -265,7 +265,7 @@ function Hero() {
     <section className="hero container" id="top" aria-labelledby="hero-title">
       <div className="hero-copy">
         <p className="eyebrow"><span className="eyebrow-line" /> AI ENGINEERING <span className="eyebrow-divider">/</span> BACKEND</p>
-        <h1 id="hero-title">Making AI<br />useful in the <span className="serif-accent">real world.</span></h1>
+        <h1 id="hero-title" aria-label="Build intelligent things. Make them matter."><span>Build</span><span className="hero-outline">intelligent</span><span>things.</span><span className="hero-accent">Make them matter.</span></h1>
         <p className="hero-summary">
           I’m <strong>Sandip Pankhaniya</strong>, a Python developer building toward AI and backend engineering. I’m interested in turning language models and thoughtful systems into products people can rely on.
         </p>
@@ -275,7 +275,17 @@ function Hero() {
         </div>
         <p className="availability"><span className="availability-dot" /> Open to product-focused opportunities <span className="availability-separator">·</span> Remote across time zones</p>
       </div>
-      <div className="hero-visual"><SignalGraphic /></div>
+      <div className="hero-visual" role="group" aria-label="Interactive AI system map and selected toolkit">
+        <SignalGraphic />
+        <div className="skills-preview">
+          <div className="preview-topline"><span>TOOLKIT / 01</span><span>IN PROGRESS</span></div>
+          <div className="preview-tools" aria-label="Selected technical interests">
+            <span>Python</span><span>Generative AI</span><span>LLMs</span>
+            <span>RAG</span><span>Backend APIs</span><span>FastAPI</span>
+          </div>
+          <p>Learning in the open. Building with intent.</p>
+        </div>
+      </div>
       <a className="scroll-cue" href="#about"><span /> SCROLL TO EXPLORE</a>
     </section>
   )
@@ -312,36 +322,31 @@ const focusAreas = [
   },
 ]
 
+const engineeringPrinciples = [
+  ['Solve the real problem', 'Start from what a person needs, then choose technology that helps.'],
+  ['Keep systems understandable', 'Prefer clear boundaries, readable code, and decisions that can be explained.'],
+  ['Design for trust', 'Think through reliability, security, and evaluation as part of the product.'],
+  ['Build, learn, refine', 'Make practical things, learn from how they behave, and improve with intention.'],
+]
+
 function About() {
   return (
     <section className="section about-section" id="about" aria-labelledby="about-title">
       <div className="container section-grid">
-        <SectionHeading index="01" eyebrow="A little about me" title={'Curious by nature.\nProduct-minded by choice.'} id="about-title" />
+        <SectionHeading index="01" eyebrow="A little about the engineer" title={'Curious by nature.\nProduct-minded by choice.'} id="about-title" />
         <div className="about-content">
           <p className="about-lead">I like technology most when it makes something difficult feel simple.</p>
           <p>I’m developing my path across AI engineering and backend development, with Python and generative AI at the center. I’m especially drawn to the work between a promising model and a product that is actually useful: retrieval, APIs, evaluation, and the care put into the whole system.</p>
+          <p>My current experience and interests are centered on Python development and generative AI, with a focus on applying them to real product problems. I’m looking for product-focused opportunities with ambitious teams, including early-stage startups, and I’m open to collaborating across time zones.</p>
           <p>I value strong fundamentals, clear code, and teams that pair thoughtful experimentation with a bias toward building.</p>
-          <div className="about-note"><span className="note-mark">↳</span><span>Currently interested in early-stage teams solving meaningful problems with software.</span></div>
-        </div>
-      </div>
-    </section>
-  )
-}
-
-function Interests() {
-  return (
-    <section className="section interests-section" id="interests" aria-labelledby="interests-title">
-      <div className="container">
-        <SectionHeading index="04" eyebrow="Questions I’m exploring" title={'Technical curiosity,\npractical intent.'} id="interests-title" />
-        <div className="focus-grid grid grid-cols-3">
-          {focusAreas.map((area) => (
-            <article className="focus-card flex flex-col" key={area.number}>
-              <div className="focus-card-top"><span>{area.number}</span><span className="focus-indicator" /></div>
-              <h3>{area.title}</h3>
-              <p>{area.text}</p>
-              <div className="focus-tags">{area.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
-            </article>
-          ))}
+          <div className="principles-inline" aria-label="Engineering principles">
+            {engineeringPrinciples.map(([title, text], index) => (
+              <div className="principle-inline" key={title}>
+                <span className="principle-index">0{index + 1}</span>
+                <span><strong>{title}</strong><small>{text}</small></span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -365,7 +370,7 @@ function Toolkit() {
     <section className="section toolkit-section" id="toolkit" aria-labelledby="toolkit-title">
       <div className="container">
         <div className="toolkit-intro">
-          <SectionHeading index="02" eyebrow="The tools & ideas" title={'A practical toolkit,\nalways in progress.'} id="toolkit-title" />
+          <SectionHeading index="02" eyebrow="Tools I use to build" title={'A practical toolkit,\nalways in progress.'} id="toolkit-title" />
           <p>A snapshot of what I work with, what I’m exploring, and where I’m building depth. The labels reflect my current focus, not a claim of mastery.</p>
         </div>
         <div className="toolkit-grid">
@@ -378,57 +383,19 @@ function Toolkit() {
           ))}
         </div>
         <p className="toolkit-footnote"><span className="tiny-star">✳</span> Fundamentals first. Tools in service of the product.</p>
-      </div>
-    </section>
-  )
-}
-
-const mindset = [
-  ['Solve the real problem', 'Start from what a person needs, then choose technology that helps.'],
-  ['Keep systems understandable', 'Prefer clear boundaries, readable code, and decisions that can be explained.'],
-  ['Design for trust', 'Think through reliability, security, and evaluation as part of the product.'],
-  ['Build, learn, refine', 'Make practical things, learn from how they behave, and improve with intention.'],
-]
-
-function Approach() {
-  return (
-    <section className="section approach-section" id="approach" aria-labelledby="approach-title">
-      <div className="container approach-layout">
-        <div className="approach-heading">
-          <SectionHeading index="05" eyebrow="How I think about the work" title={'Good engineering\nstarts with care.'} id="approach-title" />
-          <p>A few principles I want to bring to every product and team.</p>
-        </div>
-        <div className="principles-list">
-          {mindset.map(([title, text], index) => (
-            <article className="principle" key={title}>
-              <span className="principle-number">0{index + 1}</span>
-              <div><h3>{title}</h3><p>{text}</p></div>
-              <Arrow diagonal />
+        <div className="focus-grid grid grid-cols-3" aria-label="Engineering interests">
+          {focusAreas.map((area) => (
+            <article className="focus-card flex flex-col" key={area.number}>
+              <div className="focus-card-top"><span>{area.number}</span><span className="focus-indicator" /></div>
+              <h3>{area.title}</h3>
+              <p>{area.text}</p>
+              <div className="focus-tags">{area.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
             </article>
           ))}
         </div>
-      </div>
-    </section>
-  )
-}
-
-function Direction() {
-  return (
-    <section className="section direction-section" id="direction" aria-labelledby="direction-title">
-      <div className="container direction-panel">
-        <div className="direction-main">
-          <SectionHeading index="06" eyebrow="Where I’m headed" title={'Build useful things.\nGrow with good people.'} id="direction-title" />
-          <p>I’m looking for product-focused engineering opportunities with ambitious teams, including early-stage startups. I’m open to collaborating across time zones and keen to contribute, take ownership, and grow as an engineer.</p>
-          <p>I’m especially interested in products where AI helps simplify a real workflow and where the engineering team cares about the details behind a dependable experience.</p>
-          <a className="text-link" href="mailto:psandip2806@gmail.com">Start a conversation <Arrow /></a>
-        </div>
-        <div className="direction-aside" aria-label="Areas I’m excited to build in">
-          <span className="aside-label">PRODUCT SPACES I’M DRAWN TO</span>
-          <span className="interest-item"><span>01</span> AI assistants & knowledge tools</span>
-          <span className="interest-item"><span>02</span> Intelligent automation</span>
-          <span className="interest-item"><span>03</span> Developer products</span>
-          <span className="interest-item"><span>04</span> AI-ready backend systems</span>
-          <div className="aside-orbit" aria-hidden="true"><i /><i /><i /></div>
+        <div className="product-spaces">
+          <p className="spaces-label">PRODUCT SPACES I’M DRAWN TO</p>
+          <div><span>AI assistants & knowledge tools</span><span>Intelligent automation</span><span>Developer products</span><span>AI-ready backend systems</span></div>
         </div>
       </div>
     </section>
@@ -440,7 +407,7 @@ function Contact() {
     <section className="contact-section" id="contact" aria-labelledby="contact-title">
       <div className="container contact-inner">
         <p className="eyebrow"><span className="eyebrow-line" /> OPEN TO WHAT’S NEXT</p>
-        <h2 id="contact-title">Have a thoughtful<br />product in mind?</h2>
+        <h2 id="contact-title">Have something<br />interesting in mind?</h2>
         <p className="contact-copy">I’d love to hear what you’re building and where a curious engineer could help.</p>
         <a className="button button-primary contact-button" href="mailto:psandip2806@gmail.com">Email Sandip <Arrow diagonal /></a>
         <div className="contact-links">
@@ -474,17 +441,6 @@ export default function App() {
         <Hero />
         <About />
         <Toolkit />
-    <section className="section experience-section" aria-labelledby="experience-title">
-          <div className="container experience-content">
-            <SectionHeading index="03" eyebrow="Experience & direction" title="Growing at the intersection." id="experience-title">
-              My current experience and interests are centered on Python development and generative AI, with a focus on applying them to real product problems.
-            </SectionHeading>
-            <p className="experience-note">I’m developing my practice across language-model applications, backend APIs, and product engineering, with Python development and generative AI as my current foundations.</p>
-          </div>
-        </section>
-        <Interests />
-        <Approach />
-        <Direction />
         <Contact />
       </main>
       <Footer />
