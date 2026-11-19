@@ -316,7 +316,7 @@ function About() {
   return (
     <section className="section about-section" id="about" aria-labelledby="about-title">
       <div className="container section-grid">
-        <SectionHeading index="01" eyebrow="A little about me" title="Curious by nature.\nProduct-minded by choice." id="about-title" />
+        <SectionHeading index="01" eyebrow="A little about me" title={'Curious by nature.\nProduct-minded by choice.'} id="about-title" />
         <div className="about-content">
           <p className="about-lead">I like technology most when it makes something difficult feel simple.</p>
           <p>I’m developing my path across AI engineering and backend development, with Python and generative AI at the center. I’m especially drawn to the work between a promising model and a product that is actually useful: retrieval, APIs, evaluation, and the care put into the whole system.</p>
@@ -332,7 +332,7 @@ function Interests() {
   return (
     <section className="section interests-section" id="interests" aria-labelledby="interests-title">
       <div className="container">
-        <SectionHeading index="04" eyebrow="Questions I’m exploring" title="Technical curiosity,\npractical intent." id="interests-title" />
+        <SectionHeading index="04" eyebrow="Questions I’m exploring" title={'Technical curiosity,\npractical intent.'} id="interests-title" />
         <div className="focus-grid grid grid-cols-3">
           {focusAreas.map((area) => (
             <article className="focus-card flex flex-col" key={area.number}>
@@ -365,7 +365,7 @@ function Toolkit() {
     <section className="section toolkit-section" id="toolkit" aria-labelledby="toolkit-title">
       <div className="container">
         <div className="toolkit-intro">
-          <SectionHeading index="02" eyebrow="The tools & ideas" title="A practical toolkit,\nalways in progress." id="toolkit-title" />
+          <SectionHeading index="02" eyebrow="The tools & ideas" title={'A practical toolkit,\nalways in progress.'} id="toolkit-title" />
           <p>A snapshot of what I work with, what I’m exploring, and where I’m building depth. The labels reflect my current focus, not a claim of mastery.</p>
         </div>
         <div className="toolkit-grid">
@@ -395,7 +395,7 @@ function Approach() {
     <section className="section approach-section" id="approach" aria-labelledby="approach-title">
       <div className="container approach-layout">
         <div className="approach-heading">
-          <SectionHeading index="05" eyebrow="How I think about the work" title="Good engineering\nstarts with care." id="approach-title" />
+          <SectionHeading index="05" eyebrow="How I think about the work" title={'Good engineering\nstarts with care.'} id="approach-title" />
           <p>A few principles I want to bring to every product and team.</p>
         </div>
         <div className="principles-list">
@@ -417,7 +417,7 @@ function Direction() {
     <section className="section direction-section" id="direction" aria-labelledby="direction-title">
       <div className="container direction-panel">
         <div className="direction-main">
-          <SectionHeading index="06" eyebrow="Where I’m headed" title="Build useful things.\nGrow with good people." id="direction-title" />
+          <SectionHeading index="06" eyebrow="Where I’m headed" title={'Build useful things.\nGrow with good people.'} id="direction-title" />
           <p>I’m looking for product-focused engineering opportunities with ambitious teams, including early-stage startups. I’m open to collaborating across time zones and keen to contribute, take ownership, and grow as an engineer.</p>
           <p>I’m especially interested in products where AI helps simplify a real workflow and where the engineering team cares about the details behind a dependable experience.</p>
           <a className="text-link" href="mailto:psandip2806@gmail.com">Start a conversation <Arrow /></a>
